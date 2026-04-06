@@ -1,0 +1,182 @@
+:root {
+    --sky-500: #ffbd08ec;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --red: #ff5f56;
+    --yellow: #ffb22e;
+    --green: #27c93f;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #fff;
+}
+
+/* Contenedor Principal */
+.section-features {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 20px;
+    background-color: var(--slate-50);
+    gap: 40px;
+    min-height: 100vh;
+}
+
+/* Columna Izquierda */
+.content-left {
+    flex: 1;
+}
+
+.tag {
+    color: var(--sky-500);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+.content-left h2 {
+    font-size: 2.5rem;
+    color: var(--slate-700);
+    margin: 10px 0;
+}
+
+.text-description {
+    color: var(--slate-600);
+    margin-bottom: 30px;
+}
+
+/* Lista de Items */
+.features-list {
+    list-style: none;
+}
+
+.feature-item {
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.feature-item:hover {
+    background: white;
+    border-color: var(--slate-200);
+}
+
+.feature-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: var(--sky-500);
+    border-radius: 50%;
+}
+
+.feature-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.feature-desc {
+    margin-left: 18px;
+    color: var(--slate-500);
+    font-size: 0.9rem;
+}
+
+/* Ventana Derecha */
+.window-wrapper {
+    flex: 1;
+    width: 100%;
+}
+
+.window {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--slate-200);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.window-titlebar {
+    background: var(--slate-50);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--slate-200);
+}
+
+.traffic-lights {
+    display: flex;
+    gap: 6px;
+}
+
+.light { width: 10px; height: 10px; border-radius: 50%; }
+.red { background: var(--red); }
+.yellow { background: var(--yellow); }
+.green { background: var(--green); }
+
+.url-bar {
+    margin-left: 20px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size: 0.7rem;
+    color: var(--slate-500);
+    flex-grow: 1;
+}
+
+.screenshot-container {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #eee;
+}
+
+.feature-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* --- LÓGICA DE HOVER (LO MÁS IMPORTANTE) --- */
+
+/* Mostrar imagen 1 por defecto */
+#img-1 { opacity: 1; }
+
+/* Si hay un hover en la sección izquierda, ocultar la imagen 1 por defecto */
+.content-left:has(.feature-item:hover) ~ .window-wrapper #img-1 {
+    opacity: 0;
+}
+
+/* Mostrar la imagen correspondiente al item en hover */
+.content-left:has(.feature-item:nth-child(1):hover) ~ .window-wrapper #img-1 { opacity: 1; }
+.content-left:has(.feature-item:nth-child(2):hover) ~ .window-wrapper #img-2 { opacity: 1; }
+.content-left:has(.feature-item:nth-child(3):hover) ~ .window-wrapper #img-3 { opacity: 1; }
+
+/* Desktop View */
+@media (min-width: 992px) {
+    .section-features {
+        flex-direction: row;
+        align-items: center;
+        padding: 0 100px;
+    }
+}
